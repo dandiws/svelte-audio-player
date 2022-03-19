@@ -29,6 +29,19 @@
   onMount(() => {
     $duration = audio?.duration;
   });
+
+  /**
+   * Methods
+   */
+
+  const seekBy = (n: number) => {
+    $currentTime += n;
+  };
+
+  const seekTo = (t: number) => {
+    $currentTime = t;
+  };
+
   /**
    * Context
    */
@@ -43,12 +56,8 @@
     ended,
     paused,
     playbackRate,
-    seekBy: (n: number) => {
-      $currentTime += n;
-    },
-    seekTo: (t: number) => {
-      $currentTime = t;
-    }
+    seekBy,
+    seekTo
   });
 </script>
 
