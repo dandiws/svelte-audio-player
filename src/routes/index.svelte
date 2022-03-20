@@ -8,7 +8,7 @@
 </svelte:head>
 
 <div class="max-w-xl mx-auto p-16 flex justify-center">
-  <AudioPlayer>
+  <AudioPlayer src="https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav">
     <Purple />
   </AudioPlayer>
 </div>

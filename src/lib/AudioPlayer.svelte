@@ -4,6 +4,11 @@
   import { derived, writable } from 'svelte/store';
 
   /**
+   * Props
+   */
+
+  export let src: string;
+  /**
    * States
    */
 
@@ -72,7 +77,7 @@
     bind:playbackRate={$playbackRate}
     loop={$repeat}
     bind:this={audio}
-    src="https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav"
+    {src}
     style="display: none;"
   />
 
