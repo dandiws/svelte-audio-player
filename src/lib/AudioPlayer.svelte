@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, afterUpdate } from 'svelte';
   import { setAudioContext } from './context';
   import { derived, writable } from 'svelte/store';
 
@@ -11,6 +11,8 @@
   /**
    * States
    */
+
+  let prevSrc: string = undefined;
 
   let duration = writable(0);
   let currentTime = writable(0);
@@ -28,6 +30,20 @@
    * Reactives
    */
 
+  $: {
+    if (prevSrc !== src) {
+      // fix $paused store not sync with audio.paused on src props change
+      setTimeout(() => {
+        if ($paused) {
+          audio?.pause();
+        } else {
+          audio?.play();
+        }
+      }, 0);
+    }
+
+    prevSrc = src;
+  }
   /**
    * Mounted
    */
