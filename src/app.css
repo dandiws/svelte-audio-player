@@ -5,3 +5,13 @@
 button:focus {
   @apply outline-none;
 }
+
+h1,
+h2,
+h3 {
+  @apply font-bold;
+}
+
+pre {
+  @apply overflow-auto;
+}

@@ -1,11 +1,18 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, afterUpdate } from 'svelte';
   import { setAudioContext } from './context';
   import { derived, writable } from 'svelte/store';
 
   /**
+   * Props
+   */
+
+  export let src: string;
+  /**
    * States
    */
+
+  let prevSrc: string = undefined;
 
   let duration = writable(0);
   let currentTime = writable(0);
@@ -23,6 +30,20 @@
    * Reactives
    */
 
+  $: {
+    if (prevSrc !== src) {
+      // fix $paused store not sync with audio.paused on src props change
+      setTimeout(() => {
+        if ($paused) {
+          audio?.pause();
+        } else {
+          audio?.play();
+        }
+      }, 0);
+    }
+
+    prevSrc = src;
+  }
   /**
    * Mounted
    */
@@ -72,7 +93,7 @@
     bind:playbackRate={$playbackRate}
     loop={$repeat}
     bind:this={audio}
-    src="https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav"
+    {src}
     style="display: none;"
   />
 
