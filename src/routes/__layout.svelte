@@ -1,4 +1,5 @@
 <script>
+  import Footer from '$components/Footer.svelte';
   import Navbar from '$components/Navbar.svelte';
 
   import '../app.css';
@@ -13,7 +14,10 @@
   />
 </svelte:head>
 
-<div class="max-w-sm md:max-w-xl mx-auto">
+<div class="px-8 max-w-screen-sm md:max-w-screen-lg mx-auto flex flex-col min-h-screen">
   <Navbar />
-  <slot />
+  <div class="flex-1">
+    <slot />
+  </div>
+  <Footer />
 </div>
