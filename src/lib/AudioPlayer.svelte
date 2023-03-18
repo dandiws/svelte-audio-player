@@ -6,8 +6,12 @@
   /**
    * Props
    */
-
+  
   export let src: string;
+  
+  type Preload = 'auto' | 'metadata' | 'none';
+  export let preload: Preload = 'auto';
+  
   /**
    * States
    */
@@ -94,6 +98,7 @@
     loop={$repeat}
     bind:this={audio}
     {src}
+    {preload}
     style="display: none;"
   />
 
